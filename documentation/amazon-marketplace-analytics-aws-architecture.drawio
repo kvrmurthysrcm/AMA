@@ -1,0 +1,81 @@
+<mxfile host="app.diagrams.net" modified="2026-03-14T19:00:00.000Z" agent="ChatGPT" version="22.0.8">
+  <diagram id="aws-architecture" name="AWS Architecture">
+    <mxGraphModel dx="1422" dy="827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1"
+      fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- User -->
+        <mxCell id="user" value="Vendor User" style="shape=mxgraph.aws4.user;verticalLabelPosition=bottom;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="360" width="60" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Angular UI -->
+        <mxCell id="ui" value="Angular Dashboard (CloudFront + S3 Static Hosting)" style="shape=mxgraph.aws4.cloudfront;verticalLabelPosition=bottom;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="180" y="350" width="80" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- API Gateway -->
+        <mxCell id="apigw" value="AWS API Gateway" style="shape=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
+          <mxGeometry x="330" y="350" width="80" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- EKS Cluster -->
+        <mxCell id="eks" value="Amazon EKS Cluster&#xa;Spring Boot APIs + MCP Server" style="shape=mxgraph.aws4.eks;" vertex="1" parent="1">
+          <mxGeometry x="480" y="320" width="120" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Redis -->
+        <mxCell id="redis" value="ElastiCache (Redis Cache)" style="shape=mxgraph.aws4.elasticache;" vertex="1" parent="1">
+          <mxGeometry x="640" y="250" width="80" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- RDS -->
+        <mxCell id="rds" value="Amazon RDS PostgreSQL&#xa;Analytics Database" style="shape=mxgraph.aws4.rds;" vertex="1" parent="1">
+          <mxGeometry x="640" y="380" width="90" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- S3 -->
+        <mxCell id="s3" value="Amazon S3&#xa;Raw Amazon Reports Storage" style="shape=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="640" y="520" width="90" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Amazon SP-API -->
+        <mxCell id="amazon" value="Amazon Marketplace&#xa;SP-API / Reports / Data Kiosk" style="shape=mxgraph.aws4.general;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="380" width="160" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;" edge="1" parent="1" source="user" target="ui">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="ui" target="apigw">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="apigw" target="eks">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="eks" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="eks" target="rds">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="eks" target="s3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="eks" target="amazon">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
