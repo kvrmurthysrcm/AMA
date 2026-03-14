@@ -1,0 +1,35 @@
+@startuml
+!theme cerulean
+skinparam backgroundColor white
+skinparam shadowing false
+left to right direction
+title Amazon Marketplace Analytics - Data Flow Diagram (Ingestion + Analytics)
+
+actor "Vendor User" as user
+rectangle "Angular Web UI" as ui
+rectangle "Spring Boot Analytics API" as api
+rectangle "MCP Server + Agent" as mcp
+rectangle "Ingestion Service" as ingest
+database "Amazon Marketplace\nSP-API / Reports / Data Kiosk" as amazon
+database "Raw Report Store\n(S3 / Blob)" as raw
+database "Normalized Analytics DB\n(PostgreSQL)" as db
+collections "Cache\n(Redis)" as redis
+
+amazon --> ingest : Historical reports\nand API payloads
+ingest --> raw : Store raw files
+ingest --> db : Normalize + load facts\nand dimensions
+
+user --> ui : Dashboard actions\nNatural-language query
+ui --> api : REST / GraphQL request
+api --> redis : Read/write hot aggregates
+redis --> api : Cached results
+api --> db : Query analytics data
+db --> api : Fact / aggregate results
+
+api --> mcp : Route AI analytics question
+mcp --> db : Tool-driven query
+db --> mcp : Structured result set
+mcp --> api : Intent + result +\nrecommended visualization
+api --> ui : KPI JSON + chart model
+ui --> user : Bar / line / pie /\ntable / drill-down views
+@enduml

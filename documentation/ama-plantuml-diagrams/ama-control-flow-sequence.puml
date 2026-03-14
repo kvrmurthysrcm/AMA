@@ -1,0 +1,30 @@
+@startuml
+!theme cerulean
+skinparam backgroundColor white
+skinparam shadowing false
+title Amazon Marketplace Analytics - Control Flow (AI Query Sequence)
+
+actor Vendor as user
+participant "Angular UI" as ui
+participant "Spring Boot API" as api
+participant "OAuth2 / OIDC" as auth
+participant "MCP Server" as mcp
+participant "Agent" as agent
+database "Analytics DB" as db
+
+user -> ui : Ask:\n"Show my top 10 products\nfor last 90 days"
+ui -> auth : Validate session / token
+auth --> ui : Access token valid
+ui -> api : POST /analytics/query
+api -> auth : Introspect / validate JWT
+auth --> api : tenant_id, roles, scopes
+
+api -> mcp : Forward query + tenant context
+mcp -> agent : Interpret intent,\nmetric, date range
+agent --> mcp : Use tool:\nget_top_products(metric=sales,\nrange=90d, limit=10)
+mcp -> db : Query tenant-scoped facts
+db --> mcp : Aggregated product sales
+mcp --> api : Data + chartType=bar
+api --> ui : Response payload
+ui --> user : Render bar chart + summary
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+!theme cerulean
+skinparam backgroundColor white
+skinparam shadowing false
+title Amazon Marketplace Analytics - Control Flow (Query Decision State)
+
+[*] --> ReceiveQuery
+ReceiveQuery --> ValidateIdentity
+ValidateIdentity --> Reject : invalid token / tenant
+ValidateIdentity --> ParseIntent : valid user
+
+ParseIntent --> KPIRequest : summary / metric request
+ParseIntent --> TrendRequest : time-series request
+ParseIntent --> ComparisonRequest : compare products / regions
+ParseIntent --> DiagnosticRequest : ambiguous or follow-up analysis
+
+KPIRequest --> QueryAnalyticsDB
+TrendRequest --> QueryAnalyticsDB
+ComparisonRequest --> QueryAnalyticsDB
+DiagnosticRequest --> UseAgentTooling
+
+UseAgentTooling --> QueryAnalyticsDB
+QueryAnalyticsDB --> SelectVisualization
+
+SelectVisualization --> RenderLineChart : trend
+SelectVisualization --> RenderBarChart : comparison
+SelectVisualization --> RenderPieChart : distribution
+SelectVisualization --> RenderTable : detailed drill-down
+
+RenderLineChart --> [*]
+RenderBarChart --> [*]
+RenderPieChart --> [*]
+RenderTable --> [*]
+Reject --> [*]
+@enduml

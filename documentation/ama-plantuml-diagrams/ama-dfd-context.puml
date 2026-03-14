@@ -1,0 +1,21 @@
+@startuml
+!theme cerulean
+skinparam backgroundColor white
+skinparam shadowing false
+left to right direction
+title Amazon Marketplace Analytics - Data Flow Diagram (Context)
+
+rectangle "Vendor User" as user
+rectangle "Amazon Marketplace Analytics Platform" as platform
+database "Amazon Marketplace\nSP-API / Reports / Data Kiosk" as amazon
+database "Identity Provider\n(Cognito / OAuth2-OIDC)" as idp
+
+user --> platform : View dashboards\nAsk analytics questions
+platform --> user : KPIs, charts,\nAI-driven insights
+
+platform --> amazon : Pull historical sales,\ntraffic, orders, fees,\ninventory data
+amazon --> platform : JSON / JSONL /\nTab-delimited reports
+
+platform --> idp : Authenticate / authorize
+idp --> platform : Access token / claims
+@enduml
