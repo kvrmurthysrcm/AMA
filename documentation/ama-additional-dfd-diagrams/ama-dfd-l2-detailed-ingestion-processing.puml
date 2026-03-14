@@ -1,0 +1,35 @@
+@startuml
+!theme cerulean
+skinparam backgroundColor white
+skinparam shadowing false
+left to right direction
+title Level-2 DFD - Detailed Ingestion Processing
+
+rectangle "Raw Report Reader" as reader
+rectangle "Schema Detector" as detector
+rectangle "Validation Engine" as validate
+rectangle "Transformation Rules" as rules
+rectangle "Deduplication / Merge" as dedupe
+rectangle "Aggregation Builder" as agg
+database "Raw Report Store" as raw
+database "Rejected Records Store" as reject
+database "Staging Tables" as stage
+database "Canonical Fact Tables" as facts
+database "Dimension Tables" as dims
+database "Ingestion Audit Log" as audit
+
+raw --> reader : Read source artifact
+reader --> detector : Infer format\n(JSON / JSONL / TSV)
+detector --> validate : Field presence / type checks
+validate --> reject : Invalid / corrupt rows
+validate --> stage : Valid rows
+validate --> audit : Validation counts
+
+stage --> rules : Normalize fields\ncurrency / date / marketplace
+rules --> dedupe : Apply business keys
+dedupe --> dims : Upsert product / tenant /\nmarketplace dimensions
+dedupe --> facts : Upsert transactional facts
+facts --> agg : Build daily / weekly aggregates
+dims --> agg : Join dimension context
+agg --> audit : Summaries / counts /\nprocessing metrics
+@enduml

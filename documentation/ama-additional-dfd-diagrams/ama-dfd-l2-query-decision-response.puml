@@ -1,0 +1,32 @@
+@startuml
+!theme cerulean
+skinparam backgroundColor white
+skinparam shadowing false
+left to right direction
+title Level-2 DFD - Query Decision and Response Assembly
+
+actor "Business User" as user
+rectangle "UI Query Handler" as ui
+rectangle "Auth / Tenant Resolver" as auth
+rectangle "Intent Parser" as parser
+rectangle "Metric Resolver" as metric
+rectangle "Time Range Resolver" as tr
+rectangle "Analytics Query Builder" as qb
+rectangle "Chart Selector" as chart
+rectangle "Narrative Summary Builder" as summary
+database "Analytics DB" as db
+
+user --> ui : Ask question
+ui --> auth : Resolve token / tenant
+auth --> parser : Authorized request context
+parser --> metric : Determine requested KPI
+parser --> tr : Determine time range
+metric --> qb : Selected measure / dimensions
+tr --> qb : Resolved period
+qb --> db : Execute scoped query
+db --> chart : Result set
+db --> summary : Result set
+chart --> ui : Chart metadata
+summary --> ui : Natural-language summary
+ui --> user : Chart + summary + drill-down
+@enduml

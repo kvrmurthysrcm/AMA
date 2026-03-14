@@ -1,0 +1,39 @@
+@startuml
+!theme cerulean
+skinparam backgroundColor white
+skinparam shadowing false
+left to right direction
+title Level-1 DFD - Amazon SP-API Historical Data Ingestion
+
+rectangle "Scheduler / Job Orchestrator" as sched
+rectangle "Report Request Service" as req
+rectangle "Report Polling Service" as poll
+rectangle "Download Service" as dl
+rectangle "ETL / Normalization Service" as etl
+database "Amazon Marketplace\nSP-API / Reports API / Data Kiosk" as amazon
+database "Raw Report Store\n(S3 / Blob)" as raw
+database "Analytics Staging DB" as stage
+database "Normalized Analytics DB" as db
+database "Audit / Job Log" as audit
+
+sched --> req : Trigger daily / hourly jobs
+req --> amazon : Request report generation
+amazon --> req : reportId / query handle
+req --> audit : Log request metadata
+
+sched --> poll : Check status
+poll --> amazon : Poll report status
+amazon --> poll : READY / IN_PROGRESS
+poll --> audit : Update job status
+
+poll --> dl : Download when ready
+dl --> amazon : Download report file
+amazon --> dl : JSON / JSONL / TSV data
+dl --> raw : Store raw report artifact
+dl --> audit : Store checksum / size / source
+
+raw --> etl : Parse raw report
+etl --> stage : Load staged records
+etl --> db : Upsert facts / dimensions
+etl --> audit : Load summary / counts / errors
+@enduml

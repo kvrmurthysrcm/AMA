@@ -1,0 +1,31 @@
+@startuml
+!theme cerulean
+skinparam backgroundColor white
+skinparam shadowing false
+left to right direction
+title Level-1 DFD - AI Query Orchestration and Visualization
+
+actor "Business User" as user
+rectangle "Angular Dashboard + AI Query UI" as ui
+rectangle "Spring Boot Analytics API" as api
+rectangle "MCP Server" as mcp
+rectangle "Agent / Intent Router" as agent
+rectangle "Visualization Mapper" as viz
+database "Analytics DB" as db
+collections "Cache (Redis)" as cache
+
+user --> ui : Ask natural-language question
+ui --> api : Query request + filters
+api --> cache : Check cached aggregates
+cache --> api : Cached hit / miss
+
+api --> mcp : Forward query + tenant context
+mcp --> agent : Parse intent / metric / period
+agent --> db : Tool-based analytics query
+db --> agent : Structured result set
+agent --> viz : Recommend chart type
+viz --> mcp : Chart model + summary
+mcp --> api : Response payload
+api --> ui : JSON + visualization config
+ui --> user : Render line / bar / pie /\nKPI / table
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+!theme cerulean
+skinparam backgroundColor white
+skinparam shadowing false
+left to right direction
+title Level-1 DFD - Tenant Onboarding and Account Connection
+
+actor "Vendor Admin" as admin
+rectangle "Angular Admin UI" as ui
+rectangle "Tenant Management Service" as tenant
+rectangle "OAuth2 / OIDC Identity Provider" as idp
+rectangle "Amazon Authorization Connector" as connector
+database "Tenant Config DB" as cfg
+database "Secrets Store" as secrets
+database "Amazon Marketplace\nSP-API Authorization" as amazon
+
+admin --> ui : Register tenant\nConfigure account
+ui --> tenant : Create tenant\nSave profile
+tenant --> idp : Create tenant users / roles
+idp --> tenant : User / role metadata
+tenant --> cfg : Store tenant profile
+tenant --> connector : Start Amazon auth flow
+connector --> amazon : Redirect / consent
+amazon --> connector : Authorization code / token grant
+connector --> secrets : Store refresh/access secrets
+connector --> cfg : Store marketplace account link
+tenant --> ui : Onboarding complete
+ui --> admin : Tenant created +\nAmazon linked
+@enduml
