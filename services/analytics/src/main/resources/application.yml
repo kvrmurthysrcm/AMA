@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: ama-analytics
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ama
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8081
+
+logging:
+  level:
+    com.ama: INFO
+
+ama:
+  logging:
+    controller-debug-enabled: true
