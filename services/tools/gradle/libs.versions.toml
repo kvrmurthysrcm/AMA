@@ -1,0 +1,26 @@
+[versions]
+springBoot = "3.3.5"
+spring = "6.1.14"
+validation = "3.0.2"
+lombok = "1.18.34" # Update to a recent stable version
+dependencyManagement = "1.1.4"
+jib = "3.4.3" # Add Jib version
+gitPublish = "4.2.1" # Add git-publish version
+java = "21"
+mssqlJdbc = "12.10.0.jre21"
+
+[libraries]
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "springBoot" }
+spring-web = { module = "org.springframework:spring-web", version.ref = "spring" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+lombok-annotationprocessor = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+springDoc = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version = "2.6.0" } # Example version, adjust as needed
+logstash = { module = "net.logstash.logback:logstash-logback-encoder", version = "7.4" } # Example version, adjust as needed
+mssql-jdbc = { module = "com.microsoft.sqlserver:mssql-jdbc", version.ref = "mssqlJdbc" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
+dependency-management = { id = "io.spring.dependency-management", version.ref = "dependencyManagement" }
+jib = { id = "com.google.cloud.tools.jib", version.ref = "jib" }
+git-publish = { id = "org.ajoberstar.git-publish", version.ref = "gitPublish" }
+java = { id = "java" }

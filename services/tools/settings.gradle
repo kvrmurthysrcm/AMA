@@ -1,0 +1,9 @@
+rootProject.name = 'claims-portal-api'
+
+include ':services:provider-service'
+include ':services:claims-process-service'
+include ':shared:portal-notification-lib'
+
+project(':services:provider-service').projectDir = file('services/provider-service')
+project(':services:claims-process-service').projectDir = file('services/claims-process-service')
+project(':shared:portal-notification-lib').projectDir = file('shared/portal-notification-lib')
