@@ -1,0 +1,489 @@
+{
+  "info": {
+    "name": "AMA Analytics Service",
+    "_postman_id": "ama-analytics-service-collection",
+    "description": "Postman collection generated from the analytics service source. Includes all discovered endpoints with example request bodies.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081"
+    },
+    {
+      "key": "tenantId",
+      "value": "1"
+    },
+    {
+      "key": "accountId",
+      "value": "1"
+    },
+    {
+      "key": "marketplaceCode",
+      "value": "IN"
+    },
+    {
+      "key": "brandId",
+      "value": "100001"
+    },
+    {
+      "key": "categoryId",
+      "value": "100001"
+    },
+    {
+      "key": "productId",
+      "value": "1000001"
+    }
+  ],
+  "item": [
+    {
+      "name": "Dashboard Summary",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Returns summary metrics. periodDelta is currently hard-coded to zero in source.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ],\n  \"marketplaceCodes\": [\n    \"{{marketplaceCode}}\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-31\"\n  },\n  \"granularity\": \"DAY\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/dashboard/summary",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "dashboard",
+            "summary"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Dashboard Trends",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Supports granularity DAY/WEEK/MONTH.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ],\n  \"marketplaceCodes\": [\n    \"{{marketplaceCode}}\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-31\"\n  },\n  \"granularity\": \"DAY\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/dashboard/trends",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "dashboard",
+            "trends"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Sales Timeseries",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Supports granularity DAY/WEEK/MONTH.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ],\n  \"marketplaceCodes\": [\n    \"{{marketplaceCode}}\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-31\"\n  },\n  \"granularity\": \"DAY\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/sales/timeseries",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "sales",
+            "timeseries"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Sales By Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Returns top products by net sales. sort field in request is not used by source; SQL orders by net_sales DESC.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ],\n  \"marketplaceCodes\": [\n    \"{{marketplaceCode}}\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-31\"\n  },\n  \"pagination\": {\n    \"page\": 0,\n    \"size\": 20\n  },\n  \"sort\": {\n    \"field\": \"netSales\",\n    \"direction\": \"DESC\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/sales/by-product",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "sales",
+            "by-product"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Product Performance",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Combines sales, traffic, ads, inventory and finance.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ],\n  \"marketplaceCodes\": [\n    \"{{marketplaceCode}}\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-31\"\n  },\n  \"pagination\": {\n    \"page\": 0,\n    \"size\": 20\n  },\n  \"sort\": {\n    \"field\": \"netSales\",\n    \"direction\": \"DESC\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/products/performance",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "products",
+            "performance"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Inventory Stockout Risk",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Computes risk level from inventory + sales facts.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ],\n  \"marketplaceCodes\": [\n    \"{{marketplaceCode}}\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-31\"\n  },\n  \"pagination\": {\n    \"page\": 0,\n    \"size\": 20\n  },\n  \"sort\": {\n    \"field\": \"netSales\",\n    \"direction\": \"DESC\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/inventory/stockout-risk",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "inventory",
+            "stockout-risk"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Finance Profitability",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Returns fee / commission / profit summary.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ],\n  \"marketplaceCodes\": [\n    \"{{marketplaceCode}}\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-31\"\n  },\n  \"granularity\": \"DAY\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/finance/profitability",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "finance",
+            "profitability"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Traffic Conversion",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Uses traffic + ads + sales tables.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ],\n  \"marketplaceCodes\": [\n    \"{{marketplaceCode}}\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-31\"\n  },\n  \"granularity\": \"DAY\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/traffic/conversion",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "traffic",
+            "conversion"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ads Overview",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Requires data in ama.fact_advertising_daily.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ],\n  \"marketplaceCodes\": [\n    \"{{marketplaceCode}}\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-31\"\n  },\n  \"granularity\": \"DAY\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/ads/overview",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "ads",
+            "overview"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ads By Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Requires data in ama.fact_advertising_daily. sort field in request is not used by source; SQL orders by spend DESC.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ],\n  \"marketplaceCodes\": [\n    \"{{marketplaceCode}}\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-31\"\n  },\n  \"pagination\": {\n    \"page\": 0,\n    \"size\": 20\n  },\n  \"sort\": {\n    \"field\": \"netSales\",\n    \"direction\": \"DESC\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/ads/by-product",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "ads",
+            "by-product"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Insights Summary",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "Implemented but currently static/hard-coded; does not query DB.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ],\n  \"marketplaceCodes\": [\n    \"{{marketplaceCode}}\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-31\"\n  },\n  \"granularity\": \"DAY\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/insights/summary",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "insights",
+            "summary"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Metadata Accounts",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Returns marketplace accounts for tenant.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/metadata/accounts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "metadata",
+            "accounts"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Metadata Brands",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. accountIds filter is accepted in request but ignored in source.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"accountIds\": [\n    \"{{accountId}}\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/metadata/brands",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "metadata",
+            "brands"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Metadata Categories",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. brandIds filter is accepted in request but ignored in source.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"brandIds\": [\n    \"{{brandId}}\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/metadata/categories",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "metadata",
+            "categories"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Flexible Query",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "DB-backed. Supports metrics grossSales, netSales, unitsSold, ordersCount, adSpend, adSales, roas, acos, sessions, pageViews; dimensions date, brandName, categoryName, productName, marketplaceCode, accountId. granularity field is accepted but not used in current source.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenantId\": \"{{tenantId}}\",\n  \"metrics\": [\n    \"netSales\",\n    \"unitsSold\",\n    \"ordersCount\"\n  ],\n  \"dimensions\": [\n    \"date\",\n    \"productName\"\n  ],\n  \"dateRange\": {\n    \"startDate\": \"2025-01-01\",\n    \"endDate\": \"2025-01-07\"\n  },\n  \"filters\": {\n    \"accountIds\": [\n      \"{{accountId}}\"\n    ],\n    \"marketplaceCodes\": [\n      \"{{marketplaceCode}}\"\n    ],\n    \"categoryIds\": [\n      \"{{categoryId}}\"\n    ]\n  },\n  \"pagination\": {\n    \"page\": 0,\n    \"size\": 50\n  },\n  \"sort\": {\n    \"field\": \"netSales\",\n    \"direction\": \"DESC\"\n  },\n  \"granularity\": \"DAY\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/analytics/v1/query",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "analytics",
+            "v1",
+            "query"
+          ]
+        }
+      }
+    }
+  ]
+}

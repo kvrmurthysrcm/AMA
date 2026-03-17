@@ -1,0 +1,278 @@
+[
+  {
+    "name": "get_dashboard_summary",
+    "description": "Returns high-level KPI summary metrics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "get_dashboard_trends",
+    "description": "Returns trend data over time.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "get_sales_timeseries",
+    "description": "Returns sales over time.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "get_top_products",
+    "description": "Returns top selling products.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "get_product_performance",
+    "description": "Returns product level metrics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "get_stockout_risk",
+    "description": "Returns inventory stock risk.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "get_finance_profitability",
+    "description": "Returns profit and cost metrics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "get_traffic_conversion",
+    "description": "Returns traffic and conversion metrics.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "get_metadata_accounts",
+    "description": "Returns tenant accounts.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "get_metadata_brands",
+    "description": "Returns brands.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "get_metadata_categories",
+    "description": "Returns categories.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "run_flexible_analytics_query",
+    "description": "Executes flexible analytics query.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "integer"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "type": "string"
+            },
+            "endDate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+]

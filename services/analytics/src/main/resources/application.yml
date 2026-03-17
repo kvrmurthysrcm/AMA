@@ -2,7 +2,7 @@ spring:
   application:
     name: ama-analytics
   datasource:
-    url: jdbc:postgresql://localhost:5432/ama
+    url: jdbc:postgresql://localhost:5432/AMA?currentSchema=ama
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver

@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: ama-mcp-tools-service
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8082
+
+ama:
+  analytics:
+    base-url: http://localhost:8081
+
+logging:
+  level:
+    com.ama.mcptools: INFO

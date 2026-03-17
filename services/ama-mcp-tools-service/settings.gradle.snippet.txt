@@ -1,0 +1,2 @@
+include 'services:ama-mcp-tools-service'
+project(':services:ama-mcp-tools-service').projectDir = file('services/ama-mcp-tools-service')

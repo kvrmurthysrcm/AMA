@@ -10,6 +10,27 @@ Gradle multi-module Java 21 / Spring Boot 3.4 project for the Amazon Marketplace
 - `services/mcp-server` - placeholder module
 - `services/agent` - placeholder module
 
+## Build & Run modules 
+.\gradlew.bat  :services:analytics:clean build
+.\gradlew.bat  :services:analytics:bootRun
+
+.\gradlew.bat  :services:tools:clean build
+.\gradlew.bat  :services:tools:bootRun
+
+.\gradlew :services:ama-mcp-tools-service:bootRun
+
+.\gradlew.bat  :services:mcp-server:clean build
+.\gradlew.bat  :services:mcp-server:bootRun
+
+.\gradlew.bat  :services:agent:clean build
+.\gradlew.bat  :services:agent:bootRun
+
+.\gradlew.bat  :services:common:clean build
+.\gradlew.bat  :services:common:bootRun
+
+.\gradlew.bat  :services:platform:clean build
+.\gradlew.bat  :services:platform:bootRun
+
 ## MVP-1 analytics endpoints
 All analytics APIs are `POST`.
 
@@ -30,6 +51,4 @@ All analytics APIs are `POST`.
 - `/api/analytics/v1/query`
 
 ## Notes
-- Gradle wrapper is not included in this zip because the runtime environment used for generation did not have Gradle installed.
-- Import the project into IntelliJ as a Gradle project using the included `settings.gradle` and `build.gradle` files.
 - Configure PostgreSQL datasource properties in `services/analytics/src/main/resources/application.yml`.

@@ -1,0 +1,263 @@
+- name: get_dashboard_summary
+  title: Get Dashboard Summary
+  description: Returns high-level KPI summary metrics such as gross sales, net sales, units sold, and orders.
+  endpointPath: /api/analytics/v1/dashboard/summary
+  method: POST
+  preferredChart: KPI_CARDS
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+      accountIds: { type: array, items: { type: integer } }
+      marketplaceCodes: { type: array, items: { type: string } }
+      dateRange:
+        type: object
+        properties:
+          startDate: { type: string, format: date }
+          endDate: { type: string, format: date }
+        required: [startDate, endDate]
+      granularity: { type: string, enum: [DAY, WEEK, MONTH] }
+
+- name: get_dashboard_trends
+  title: Get Dashboard Trends
+  description: Returns trend data over time for key business metrics.
+  endpointPath: /api/analytics/v1/dashboard/trends
+  method: POST
+  preferredChart: LINE
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+      accountIds: { type: array, items: { type: integer } }
+      marketplaceCodes: { type: array, items: { type: string } }
+      dateRange:
+        type: object
+        properties:
+          startDate: { type: string, format: date }
+          endDate: { type: string, format: date }
+
+- name: get_sales_timeseries
+  title: Get Sales Timeseries
+  description: Returns sales over time for the selected date range and filters.
+  endpointPath: /api/analytics/v1/sales/timeseries
+  method: POST
+  preferredChart: LINE
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+      accountIds: { type: array, items: { type: integer } }
+      marketplaceCodes: { type: array, items: { type: string } }
+      dateRange:
+        type: object
+        properties:
+          startDate: { type: string, format: date }
+          endDate: { type: string, format: date }
+      granularity: { type: string, enum: [DAY, WEEK, MONTH] }
+
+- name: get_top_products
+  title: Get Top Products
+  description: Returns top-selling products for a tenant within a date range.
+  endpointPath: /api/analytics/v1/sales/by-product
+  method: POST
+  preferredChart: BAR
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+      accountIds: { type: array, items: { type: integer } }
+      marketplaceCodes: { type: array, items: { type: string } }
+      dateRange:
+        type: object
+        properties:
+          startDate: { type: string, format: date }
+          endDate: { type: string, format: date }
+      pagination:
+        type: object
+        properties:
+          page: { type: integer }
+          size: { type: integer }
+
+- name: get_product_performance
+  title: Get Product Performance
+  description: Returns product-level sales, traffic, inventory, and finance indicators.
+  endpointPath: /api/analytics/v1/products/performance
+  method: POST
+  preferredChart: TABLE
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+      accountIds: { type: array, items: { type: integer } }
+      marketplaceCodes: { type: array, items: { type: string } }
+      dateRange:
+        type: object
+        properties:
+          startDate: { type: string, format: date }
+          endDate: { type: string, format: date }
+      pagination:
+        type: object
+        properties:
+          page: { type: integer }
+          size: { type: integer }
+
+- name: get_stockout_risk
+  title: Get Stockout Risk
+  description: Returns products with inventory stockout risk.
+  endpointPath: /api/analytics/v1/inventory/stockout-risk
+  method: POST
+  preferredChart: TABLE
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+      accountIds: { type: array, items: { type: integer } }
+      marketplaceCodes: { type: array, items: { type: string } }
+      dateRange:
+        type: object
+        properties:
+          startDate: { type: string, format: date }
+          endDate: { type: string, format: date }
+      pagination:
+        type: object
+        properties:
+          page: { type: integer }
+          size: { type: integer }
+
+- name: get_finance_profitability
+  title: Get Finance Profitability
+  description: Returns finance and profitability metrics including fees, commissions, and estimated profit.
+  endpointPath: /api/analytics/v1/finance/profitability
+  method: POST
+  preferredChart: KPI_CARDS
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+      accountIds: { type: array, items: { type: integer } }
+      marketplaceCodes: { type: array, items: { type: string } }
+      dateRange:
+        type: object
+        properties:
+          startDate: { type: string, format: date }
+          endDate: { type: string, format: date }
+
+- name: get_traffic_conversion
+  title: Get Traffic Conversion
+  description: Returns sessions, page views, and conversion metrics.
+  endpointPath: /api/analytics/v1/traffic/conversion
+  method: POST
+  preferredChart: COMBO
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+      accountIds: { type: array, items: { type: integer } }
+      marketplaceCodes: { type: array, items: { type: string } }
+      dateRange:
+        type: object
+        properties:
+          startDate: { type: string, format: date }
+          endDate: { type: string, format: date }
+
+- name: get_metadata_accounts
+  title: Get Metadata Accounts
+  description: Returns marketplace accounts for a tenant.
+  endpointPath: /api/analytics/v1/metadata/accounts
+  method: POST
+  preferredChart: NONE
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+
+- name: get_metadata_brands
+  title: Get Metadata Brands
+  description: Returns brands for a tenant.
+  endpointPath: /api/analytics/v1/metadata/brands
+  method: POST
+  preferredChart: NONE
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+      accountIds: { type: array, items: { type: integer } }
+
+- name: get_metadata_categories
+  title: Get Metadata Categories
+  description: Returns categories for a tenant.
+  endpointPath: /api/analytics/v1/metadata/categories
+  method: POST
+  preferredChart: NONE
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+      brandIds: { type: array, items: { type: integer } }
+
+- name: run_flexible_analytics_query
+  title: Run Flexible Analytics Query
+  description: Executes a flexible analytics query using selected metrics, dimensions, and filters.
+  endpointPath: /api/analytics/v1/query
+  method: POST
+  preferredChart: AUTO
+  enabled: true
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+      metrics: { type: array, items: { type: string } }
+      dimensions: { type: array, items: { type: string } }
+      dateRange:
+        type: object
+        properties:
+          startDate: { type: string, format: date }
+          endDate: { type: string, format: date }
+      filters: { type: object }
+
+- name: get_insights_summary
+  title: Get Insights Summary
+  description: Returns prebuilt insight cards. Current analytics implementation is static/demo oriented.
+  endpointPath: /api/analytics/v1/insights/summary
+  method: POST
+  preferredChart: NONE
+  enabled: false
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+
+- name: get_ads_overview
+  title: Get Ads Overview
+  description: Returns advertising summary metrics. Enable after fact_advertising_daily is populated.
+  endpointPath: /api/analytics/v1/ads/overview
+  method: POST
+  preferredChart: KPI_CARDS
+  enabled: false
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }
+
+- name: get_ads_by_product
+  title: Get Ads by Product
+  description: Returns advertising metrics grouped by product. Enable after ad seed data is loaded.
+  endpointPath: /api/analytics/v1/ads/by-product
+  method: POST
+  preferredChart: BAR
+  enabled: false
+  inputSchema:
+    type: object
+    properties:
+      tenantId: { type: integer }

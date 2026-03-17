@@ -1,0 +1,168 @@
+- description: Returns high-level KPI summary metrics.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: get_dashboard_summary
+- description: Returns trend data over time.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: get_dashboard_trends
+- description: Returns sales over time.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: get_sales_timeseries
+- description: Returns top selling products.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: get_top_products
+- description: Returns product level metrics.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: get_product_performance
+- description: Returns inventory stock risk.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: get_stockout_risk
+- description: Returns profit and cost metrics.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: get_finance_profitability
+- description: Returns traffic and conversion metrics.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: get_traffic_conversion
+- description: Returns tenant accounts.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: get_metadata_accounts
+- description: Returns brands.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: get_metadata_brands
+- description: Returns categories.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: get_metadata_categories
+- description: Executes flexible analytics query.
+  inputSchema:
+    properties:
+      dateRange:
+        properties:
+          endDate:
+            type: string
+          startDate:
+            type: string
+        type: object
+      tenantId:
+        type: integer
+    type: object
+  name: run_flexible_analytics_query
