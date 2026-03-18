@@ -1,0 +1,169 @@
+{
+  "info": {
+    "name": "AMA MCP Tools + Agent Test Collection",
+    "description": "Postman collection to test the AMA MCP Tools service directly and the Agent end-to-end.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "mcpBaseUrl", "value": "http://localhost:8082"},
+    {"key": "agentBaseUrl", "value": "http://localhost:8083"},
+    {"key": "tenantId", "value": "1001"},
+    {"key": "accountId", "value": "1001"},
+    {"key": "marketplaceCode", "value": "IN"}
+  ],
+  "item": [
+    {
+      "name": "MCP Tools",
+      "item": [
+        {
+          "name": "List Enabled Tools",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/list", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","list"]}
+          }
+        },
+        {
+          "name": "Call - Dashboard Summary",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"get_dashboard_summary\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}},\n    \"accountIds\": [{{accountId}}],\n    \"marketplaceCodes\": [\"{{marketplaceCode}}\"],\n    \"dateRange\": {\n      \"startDate\": \"2026-02-18\",\n      \"endDate\": \"2026-03-18\"\n    },\n    \"granularity\": \"DAY\"\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        },
+        {
+          "name": "Call - Dashboard Trends",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"get_dashboard_trends\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}},\n    \"accountIds\": [{{accountId}}],\n    \"marketplaceCodes\": [\"{{marketplaceCode}}\"],\n    \"dateRange\": {\n      \"startDate\": \"2026-02-18\",\n      \"endDate\": \"2026-03-18\"\n    }\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        },
+        {
+          "name": "Call - Sales Timeseries",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"get_sales_timeseries\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}},\n    \"accountIds\": [{{accountId}}],\n    \"marketplaceCodes\": [\"{{marketplaceCode}}\"],\n    \"dateRange\": {\n      \"startDate\": \"2026-02-18\",\n      \"endDate\": \"2026-03-18\"\n    },\n    \"granularity\": \"DAY\"\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        },
+        {
+          "name": "Call - Top Products",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"get_top_products\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}},\n    \"accountIds\": [{{accountId}}],\n    \"marketplaceCodes\": [\"{{marketplaceCode}}\"],\n    \"dateRange\": {\n      \"startDate\": \"2026-02-18\",\n      \"endDate\": \"2026-03-18\"\n    },\n    \"page\": 0,\n    \"size\": 10\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        },
+        {
+          "name": "Call - Product Performance",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"get_product_performance\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}},\n    \"accountIds\": [{{accountId}}],\n    \"marketplaceCodes\": [\"{{marketplaceCode}}\"],\n    \"dateRange\": {\n      \"startDate\": \"2026-02-18\",\n      \"endDate\": \"2026-03-18\"\n    },\n    \"page\": 0,\n    \"size\": 10\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        },
+        {
+          "name": "Call - Stockout Risk",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"get_stockout_risk\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}},\n    \"accountIds\": [{{accountId}}],\n    \"marketplaceCodes\": [\"{{marketplaceCode}}\"],\n    \"dateRange\": {\n      \"startDate\": \"2026-02-18\",\n      \"endDate\": \"2026-03-18\"\n    },\n    \"page\": 0,\n    \"size\": 10\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        },
+        {
+          "name": "Call - Finance Profitability",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"get_finance_profitability\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}},\n    \"accountIds\": [{{accountId}}],\n    \"marketplaceCodes\": [\"{{marketplaceCode}}\"],\n    \"dateRange\": {\n      \"startDate\": \"2026-02-18\",\n      \"endDate\": \"2026-03-18\"\n    }\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        },
+        {
+          "name": "Call - Traffic Conversion",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"get_traffic_conversion\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}},\n    \"accountIds\": [{{accountId}}],\n    \"marketplaceCodes\": [\"{{marketplaceCode}}\"],\n    \"dateRange\": {\n      \"startDate\": \"2026-02-18\",\n      \"endDate\": \"2026-03-18\"\n    }\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        },
+        {
+          "name": "Call - Metadata Accounts",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"get_metadata_accounts\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}}\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        },
+        {
+          "name": "Call - Metadata Brands",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"get_metadata_brands\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}},\n    \"accountIds\": [{{accountId}}]\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        },
+        {
+          "name": "Call - Metadata Categories",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"get_metadata_categories\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}},\n    \"brandIds\": [1]\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        },
+        {
+          "name": "Call - Flexible Analytics Query",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"run_flexible_analytics_query\",\n  \"arguments\": {\n    \"tenantId\": {{tenantId}},\n    \"metrics\": [\"netSales\", \"unitsSold\"],\n    \"dimensions\": [\"productName\"],\n    \"dateRange\": {\n      \"startDate\": \"2026-02-18\",\n      \"endDate\": \"2026-03-18\"\n    },\n    \"filters\": {\n      \"marketplaceCodes\": [\"{{marketplaceCode}}\"]\n    }\n  }\n}"},
+            "url": {"raw": "{{mcpBaseUrl}}/api/mcp/v1/tools/call", "host": ["{{mcpBaseUrl}}"], "path": ["api","mcp","v1","tools","call"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Agent E2E",
+      "item": [
+        {
+          "name": "Agent Query - Top Products Last Month",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"question\": \"Show me the top products in the last 30 days\",\n  \"tenantId\": {{tenantId}},\n  \"accountIds\": [{{accountId}}],\n  \"marketplaceCodes\": [\"{{marketplaceCode}}\"]\n}"},
+            "url": {"raw": "{{agentBaseUrl}}/api/agent/v1/query", "host": ["{{agentBaseUrl}}"], "path": ["api","agent","v1","query"]}
+          }
+        },
+        {
+          "name": "Agent Query - Sales Trend",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"question\": \"Show me sales trend for the last 30 days\",\n  \"tenantId\": {{tenantId}},\n  \"accountIds\": [{{accountId}}],\n  \"marketplaceCodes\": [\"{{marketplaceCode}}\"]\n}"},
+            "url": {"raw": "{{agentBaseUrl}}/api/agent/v1/query", "host": ["{{agentBaseUrl}}"], "path": ["api","agent","v1","query"]}
+          }
+        },
+        {
+          "name": "Agent Query - Dashboard Summary",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"question\": \"Give me a dashboard summary for this month\",\n  \"tenantId\": {{tenantId}},\n  \"accountIds\": [{{accountId}}],\n  \"marketplaceCodes\": [\"{{marketplaceCode}}\"]\n}"},
+            "url": {"raw": "{{agentBaseUrl}}/api/agent/v1/query", "host": ["{{agentBaseUrl}}"], "path": ["api","agent","v1","query"]}
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+include 'services:agent'
+project(':services:agent').projectDir = file('services/agent')

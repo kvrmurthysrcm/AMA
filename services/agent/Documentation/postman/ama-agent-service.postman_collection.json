@@ -1,0 +1,268 @@
+{
+  "info": {
+    "name": "AMA Agent Service",
+    "_postman_id": "ama-agent-service-collection",
+    "description": "Postman collection for testing the AMA Agent service. Assumes Agent runs on localhost:8083, Tools on 8082, Analytics on 8081.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8083"
+    },
+    {
+      "key": "tenantId",
+      "value": "1001"
+    },
+    {
+      "key": "accountId",
+      "value": "1001"
+    },
+    {
+      "key": "marketplaceCode",
+      "value": "IN"
+    }
+  ],
+  "item": [
+    {
+      "name": "Top Products - Last Month",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "Basic happy-path query. Agent should discover tools, choose get_top_products or similar, call Tools service, and return summary + data + chartType.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"Which products sold best in the last month?\",\n  \"tenantId\": 1001,\n  \"accountIds\": [\n    1001\n  ],\n  \"marketplaceCodes\": [\n    \"IN\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/agent/v1/query",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "agent",
+            "v1",
+            "query"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sales Trend - Last 30 Days",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "Agent should choose get_sales_timeseries or get_dashboard_trends.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"Show me the sales trend for the last 30 days\",\n  \"tenantId\": 1001,\n  \"accountIds\": [\n    1001\n  ],\n  \"marketplaceCodes\": [\n    \"IN\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/agent/v1/query",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "agent",
+            "v1",
+            "query"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Stockout Risk",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "Agent should choose get_stockout_risk.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"Which products are at risk of stockout?\",\n  \"tenantId\": 1001,\n  \"accountIds\": [\n    1001\n  ],\n  \"marketplaceCodes\": [\n    \"IN\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/agent/v1/query",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "agent",
+            "v1",
+            "query"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Finance Profitability",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "Agent should choose get_finance_profitability.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"Give me a profitability summary for this quarter\",\n  \"tenantId\": 1001,\n  \"accountIds\": [\n    1001\n  ],\n  \"marketplaceCodes\": [\n    \"IN\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/agent/v1/query",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "agent",
+            "v1",
+            "query"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Traffic Conversion",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "Agent should choose get_traffic_conversion.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"How is conversion performing for our products?\",\n  \"tenantId\": 1001,\n  \"accountIds\": [\n    1001\n  ],\n  \"marketplaceCodes\": [\n    \"IN\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/agent/v1/query",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "agent",
+            "v1",
+            "query"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Category Query",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "Tests whether the model can infer a product/category-oriented tool and date range.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"Which desktop PCs sold best in the last two months?\",\n  \"tenantId\": 1001,\n  \"accountIds\": [\n    1001\n  ],\n  \"marketplaceCodes\": [\n    \"IN\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/agent/v1/query",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "agent",
+            "v1",
+            "query"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Dashboard Summary",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "Agent should choose get_dashboard_summary.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"Give me an overall sales summary for March 2025\",\n  \"tenantId\": 1001,\n  \"accountIds\": [\n    1001\n  ],\n  \"marketplaceCodes\": [\n    \"IN\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/agent/v1/query",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "agent",
+            "v1",
+            "query"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Flexible Analytics Query",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "description": "Depending on prompt quality, Agent may choose run_flexible_analytics_query.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"Compare units sold and net sales by product over the first week of data\",\n  \"tenantId\": 1001,\n  \"accountIds\": [\n    1001\n  ],\n  \"marketplaceCodes\": [\n    \"IN\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/agent/v1/query",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "agent",
+            "v1",
+            "query"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

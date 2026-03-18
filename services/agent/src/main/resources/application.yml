@@ -1,3 +1,43 @@
+server:
+  port: 8083
+
 spring:
   application:
-    name: ama-agent
+    name: ama-agent-service
+  jackson:
+    default-property-inclusion: non_null
+
+app:
+  tools:
+    base-url: http://localhost:8082
+    list-path: /api/mcp/v1/tools/list
+    call-path: /api/mcp/v1/tools/call
+
+llm:
+  provider: openai
+  temperature: 0.2
+  maxTokens: 500
+
+  openai:
+    baseUrl: https://api.openai.com
+    apiKey: ${OPENAI_API_KEY:}
+    model: gpt-4o-mini
+
+  azureOpenai:
+    endpoint: ${AZURE_OPENAI_ENDPOINT:}
+    apiKey: ${AZURE_OPENAI_API_KEY:}
+    deployment: ${AZURE_OPENAI_DEPLOYMENT:}
+    apiVersion: 2024-02-15-preview
+
+  cohere:
+    baseUrl: https://api.cohere.com
+    apiKey: ${COHERE_API_KEY:}
+    model: command-r
+
+  ollama:
+    baseUrl: http://localhost:11434
+    model: gemma3:4b
+    timeoutMs: 120000
+    options:
+      stop:
+        - "</s>"

@@ -1,0 +1,27 @@
+MCP GET /api/mcp/v1/tools/list
+
+MCP POST /api/mcp/v1/tools/call for:
+
+dashboard summary
+
+dashboard trends
+
+sales timeseries
+
+top products
+
+product performance
+
+stockout risk
+
+finance profitability
+
+traffic conversion
+
+metadata accounts
+
+metadata brands
+
+metadata categories
+
+flexible analytics query
