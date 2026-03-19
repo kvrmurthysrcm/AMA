@@ -14,13 +14,7 @@ Gradle multi-module Java 21 / Spring Boot 3.4 project for the Amazon Marketplace
 .\gradlew.bat  :services:analytics:clean build
 .\gradlew.bat  :services:analytics:bootRun
 
-.\gradlew.bat  :services:tools:clean build
-.\gradlew.bat  :services:tools:bootRun
-
 .\gradlew :services:ama-mcp-tools-service:bootRun
-
-.\gradlew.bat  :services:mcp-server:clean build
-.\gradlew.bat  :services:mcp-server:bootRun
 
 .\gradlew.bat  :services:agent:clean build
 .\gradlew.bat  :services:agent:bootRun
